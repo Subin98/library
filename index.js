@@ -25,9 +25,7 @@ APP.use(express.urlencoded({extended:true}));
 APP.use(cors());
 APP.use(express.static('./dist/frontend'));
 
-APP.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/frontend/index.html'));
-   });
+
    
 
 function verifyToken(req,res,next)
@@ -86,13 +84,12 @@ user.save();
 
 APP.route("/api/users")
 .get((req,res)=>{
-  console.log("Request came to users api")  
  res.header("Access-Control-Allow-Origin","*");
  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH");
 users.find({},{_id:0,userName:1})
 .then(data=>{
     console.log(data)
-    res.send(data);
+    res.status(200).send(data);
 })
 });
 
@@ -114,9 +111,11 @@ APP.route("/api/loginuser")
         }
         
         else
-        res.status(401).json({
+       {
+         res.status(401).json({
             message:"Invalid credentials"
         });
+        }
 
     });
 })
@@ -146,12 +145,13 @@ APP.route("/api/books")
 .get(verifyToken,(req,res)=>{
  res.header("Access-Control-Allow-Origin","*");
  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH");
+//  res.header("Access-Control-Allow-Headers: Content-Type, x-requested-with");
  books.find({},(err,books)=>{
     if(err)
     console.log(err)
     else
     {
-        res.status(201).send(books);
+   res.status(200).send(books);
 
     }
 
@@ -168,7 +168,7 @@ APP.route("/api/book/:id")
     console.log(err)
     else
     {
-        res.status(201).send(book);
+        res.status(200).send(book);
     }
     
 
@@ -212,3 +212,7 @@ APP.route("/api/delete-book/:id")
 
  })
 });
+
+APP.get('/*', function(req, res, next) {
+    res.sendFile(path.join(__dirname + '/dist/frontend/index.html'));
+   });
