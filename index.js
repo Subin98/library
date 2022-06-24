@@ -58,7 +58,7 @@ function verifyToken(req,res,next)
 var Mdatabase = "mongodb+srv://admin:admin123@cluster0.ljfzfhr.mongodb.net/library";
 
 const Mongodb = "mongodb://localhost:27017/library";
-mongoose.connect(Mdatabase || Mongodb,{useNewUrlParser:true});
+mongoose.connect(Mdatabase || Mongodb,{useNewUrlParser:true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error',console.error.bind(console,"connection error"));
 db.once('open',()=>{
