@@ -26,7 +26,7 @@ APP.use(cors());
 APP.use(express.static('./dist/frontend'));
 
 APP.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist//frontend/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/frontend/index.html'));
    });
    
 
