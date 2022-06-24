@@ -12,7 +12,7 @@ const port = 3000;
 const APP = express();
 
 //connection to server
-APP.listen(process.env.PORT || 8080,(err)=>{
+APP.listen(port,(err)=>{
     if(err)
         console.log(er);
     else
