@@ -90,6 +90,7 @@ APP.route("/api/users")
  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH");
 users.find({},{_id:0,userName:1})
 .then(data=>{
+    console.log(data)
     res.send(data);
 })
 });
