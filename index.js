@@ -86,6 +86,7 @@ user.save();
 
 APP.route("/api/users")
 .get((req,res)=>{
+  console.log("Request came to users api")  
  res.header("Access-Control-Allow-Origin","*");
  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH");
 users.find({},{_id:0,userName:1})
